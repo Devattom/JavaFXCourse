@@ -39,6 +39,10 @@ dependencies {
     implementation("org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    implementation("com.squareup.okhttp3:okhttp:+")
+    compileOnly("org.projectlombok:lombok:+")
+    annotationProcessor("org.projectlombok:lombok:1.+")
+    implementation("com.google.code.gson:gson:+")
 }
 
 tasks.withType<Test> {
