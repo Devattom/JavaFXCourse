@@ -1,19 +1,52 @@
 package org.project.javafxcourse.controllers;
 
 import javafx.fxml.FXML;
-
-import org.project.javafxcourse.models.moviesRecomendations.MoviesRecommendations;
-
-import java.util.List;
+import javafx.scene.layout.VBox;
+import org.project.javafxcourse.repositories.mostPopulars.IMDbApiRepository;
 
 public class HomeController {
 
     @FXML
-    private TodayRecommendationsController todayRecommendationsSectionController;
+    private VBox popularMoviesSection;
+    @FXML
+    private MostPopularsController popularMoviesSectionController;
+
+    @FXML
+    private VBox popularShowsSection;
+    @FXML
+    private MostPopularsController popularShowsSectionController;
 
     @FXML
     public void initialize() {
         System.out.println("HomeController::initialize");
-        todayRecommendationsSectionController.loadTodayRecommendations();
+
+        IMDbApiRepository repository = new IMDbApiRepository();
+
+        // Charger les films populaires
+        popularMoviesSectionController.loadContent(
+                () -> {
+                    try {
+                        return repository.getMostPopularMovies();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                },
+                "Erreur lors du chargement des films populaires"
+        );
+
+        // Charger les séries populaires
+        popularShowsSectionController.loadContent(
+                () -> {
+                    try {
+                        return repository.getMostPopularShows();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                },
+                "Erreur lors du chargement des séries populaires"
+        );
+
+        popularMoviesSectionController.setSectionTitle("⭐ Recommandations de films");
+        popularShowsSectionController.setSectionTitle("⭐ Recommandations de séries");
     }
 }

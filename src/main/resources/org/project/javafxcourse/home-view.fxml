@@ -2,14 +2,25 @@
 
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.project.javafxcourse.controllers.HomeController">
-    <VBox spacing="30" alignment="TOP_CENTER" style="-fx-padding: 20;">
-        <Label text="🎬 CineScout" style="-fx-font-size: 28px; -fx-font-weight: bold;" />
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.project.javafxcourse.controllers.HomeController"
+            style="-fx-background-color: #f5f5f5;">
 
-        <!-- Inclusion de la section "Recommandations du jour" -->
-        <fx:include source="today-recommendations.fxml" fx:id="todayRecommendationsSection"/>
-    </VBox>
-</AnchorPane>
+    <!-- Section du titre en haut -->
+    <top>
+        <VBox alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
+            <Label text="🎬 CineScout" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #e50914;" />
+            <Label text="Découvrez les meilleurs films du moment" style="-fx-font-size: 14px; -fx-text-fill: #666666; -fx-padding: 5 0 0 0;" />
+        </VBox>
+    </top>
+
+    <!-- Section des recommandations au centre -->
+    <center>
+        <VBox spacing="10" alignment="TOP_CENTER" style="-fx-padding: 10;">
+            <fx:include source="most-popular.fxml" fx:id="popularMoviesSection"/>
+            <fx:include source="most-popular.fxml" fx:id="popularShowsSection"/>
+        </VBox>
+    </center>
+
+</BorderPane>

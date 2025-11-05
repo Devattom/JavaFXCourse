@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import org.project.javafxcourse.models.moviesRecomendations.MovieRecommendationInfo;
+import org.project.javafxcourse.interfaces.IMDb.IMDbPopularsInfo;
 
 import java.io.InputStream;
 
@@ -22,12 +22,12 @@ public class MovieCardController {
     private Button watchButton;
 
     // Set data called by le loader after load()
-    public void setData(MovieRecommendationInfo movie) {
+    public void setData(IMDbPopularsInfo movie) {
         // Titre
-        titleLabel.setText(safeString(movie.getTitle(), "Titre inconnu"));
+        titleLabel.setText(safeString(movie.getPrimaryTitle(), "Titre inconnu"));
 
         // Image (chargement asynchrone)
-        String imageUrl = movie.getImage_url();
+        String imageUrl = movie.getPrimaryImage();
         if (imageUrl != null && !imageUrl.isBlank()) {
             try {
                 Image img = new Image(imageUrl, /*requestedWidth*/180, /*requestedHeight*/260, true, true, true);
@@ -40,16 +40,18 @@ public class MovieCardController {
             posterImage.setImage(loadResourcePlaceholder());
         }
 
-        // Étoiles basées sur critics_score (0..100 -> 0..5 étoiles)
         starsContainer.getChildren().clear();
-        int critics = movie.getCritics_score();
-        int stars = 0;
-        stars = Math.max(0, Math.min(5, (int) Math.round((critics / 100.0) * 5)));
+
+        double critics = movie.getAverageRating(); // Note IMDb : sur 10
+        int stars = (int) Math.round((critics / 10.0) * 5); // sur 5 étoiles
+        stars = Math.max(0, Math.min(5, stars)); // borne entre 0 et 5
+
         for (int i = 0; i < 5; i++) {
             Label star = new Label(i < stars ? "★" : "☆");
             star.setStyle("-fx-font-size: 16px; -fx-text-fill: #f4c542;"); // jaune
             starsContainer.getChildren().add(star);
         }
+
 
         // Bouton "Où regarder ?"
         watchButton.setOnAction(evt -> {

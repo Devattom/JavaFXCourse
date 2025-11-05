@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.project.javafxcourse.controllers.MostPopularsController"
+      spacing="8"
+      style="-fx-padding: 10 20;"
+      alignment="TOP_LEFT">
+
+    <!-- Titre de la section -->
+    <Label fx:id="sectionTitle"
+           text="⭐ Recommandations"
+           style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #222222;" />
+
+    <!-- Spinner de chargement -->
+    <StackPane alignment="CENTER_LEFT" visible="false" managed="false">
+        <ProgressIndicator fx:id="loadingSpinner" visible="false" maxWidth="50" maxHeight="50"/>
+    </StackPane>
+
+    <!-- ScrollPane avec les cartes -->
+    <ScrollPane fitToHeight="false"
+                hbarPolicy="AS_NEEDED"
+                vbarPolicy="NEVER"
+                pannable="true"
+                style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;">
+        <HBox fx:id="popularsContainer"
+              spacing="20"
+              alignment="TOP_LEFT" />
+    </ScrollPane>
+
+    <!-- Message d'erreur -->
+    <Label fx:id="errorLabel"
+           visible="false"
+           style="-fx-text-fill: #e50914; -fx-font-size: 14px; -fx-font-weight: bold;" />
+
+</VBox>

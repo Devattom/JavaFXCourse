@@ -11,10 +11,10 @@ module org.project.javafxcourse {
     opens org.project.javafxcourse.controllers to javafx.fxml;
 
     // Ouvre les modèles à Gson et JavaFX (pour la désérialisation et les bindings)
-    opens org.project.javafxcourse.models.moviesRecomendations to com.google.gson, javafx.base;
+    opens org.project.javafxcourse.models.IMDb.populars to com.google.gson, javafx.base;
 
     // Exporte les packages utiles
     exports org.project.javafxcourse;
     exports org.project.javafxcourse.controllers;
-    exports org.project.javafxcourse.models.moviesRecomendations;
+    exports org.project.javafxcourse.models.IMDb.populars;
 }

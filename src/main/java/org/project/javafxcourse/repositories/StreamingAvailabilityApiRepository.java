@@ -4,13 +4,13 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.project.javafxcourse.interfaces.StreamingAvailabilityRepository;
+import org.project.javafxcourse.interfaces.StreamingAvailabilityManager;
 import org.project.javafxcourse.models.StreamingAvailability;
 
 import java.io.IOException;
 import java.util.Objects;
 
-public class StreamingAvailabilityApiRepository implements StreamingAvailabilityRepository {
+public class StreamingAvailabilityApiRepository implements StreamingAvailabilityManager {
     private String baseUrl = "https://streaming-availability.p.rapidapi.com/shows/search/title";
     private String apiKey = "3633bbd7ebmshbeec87fdb76e4a9p1edd85jsne9b1652eb2df";
 
