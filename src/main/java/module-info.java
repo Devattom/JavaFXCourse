@@ -4,9 +4,17 @@ module org.project.javafxcourse {
 
     requires org.kordamp.bootstrapfx.core;
     requires okhttp3;
+    requires com.google.gson;
+    requires static lombok;
 
-    opens org.project.javafxcourse to javafx.fxml;
+    // Ouvre les contrôleurs à JavaFX (pour FXML)
+    opens org.project.javafxcourse.controllers to javafx.fxml;
+
+    // Ouvre les modèles à Gson et JavaFX (pour la désérialisation et les bindings)
+    opens org.project.javafxcourse.models.IMDb.populars to com.google.gson, javafx.base;
+
+    // Exporte les packages utiles
     exports org.project.javafxcourse;
     exports org.project.javafxcourse.controllers;
-    opens org.project.javafxcourse.controllers to javafx.fxml;
+    exports org.project.javafxcourse.models.IMDb.populars;
 }
