@@ -1,5 +1,6 @@
 package org.project.javafxcourse.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -7,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import org.project.javafxcourse.interfaces.IMDb.IMDbPopularsInfo;
+import org.project.javafxcourse.navigation.NavigationManager;
 
 import java.io.InputStream;
 
@@ -21,10 +23,21 @@ public class MovieCardController {
     @FXML
     private Button watchButton;
 
+    private String title;
+    private String showType;
+
+    @FXML
+    private void onWatchButtonClick(ActionEvent event) {
+        // On appelle un gestionnaire global (typiquement via un EventBus, ou une interface)
+        NavigationManager.goToStreamingAvailability(title, showType);
+    }
+
     // Set data called by le loader after load()
     public void setData(IMDbPopularsInfo movie) {
         // Titre
         titleLabel.setText(safeString(movie.getPrimaryTitle(), "Titre inconnu"));
+        this.title = movie.getPrimaryTitle();
+        this.showType = movie.getShowType();
 
         // Image (chargement asynchrone)
         String imageUrl = movie.getPrimaryImage();
@@ -51,12 +64,6 @@ public class MovieCardController {
             star.setStyle("-fx-font-size: 16px; -fx-text-fill: #f4c542;"); // jaune
             starsContainer.getChildren().add(star);
         }
-
-
-        // Bouton "Où regarder ?"
-        watchButton.setOnAction(evt -> {
-            System.out.println("ou regarder");
-        });
     }
 
     private String safeString(String s, String def) {

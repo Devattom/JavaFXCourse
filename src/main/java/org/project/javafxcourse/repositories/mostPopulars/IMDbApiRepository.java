@@ -30,8 +30,6 @@ public class IMDbApiRepository implements MoviesManager {
 
             String mostPopularMovies = response.body().string();
 
-            System.out.println(mostPopularMovies);
-
             Gson gson = new Gson();
 
             List<IMDbMostPopularMovieInfo> movies = List.of(gson.fromJson(mostPopularMovies, IMDbMostPopularMovieInfo[].class));
@@ -60,8 +58,6 @@ public class IMDbApiRepository implements MoviesManager {
             }
 
             String mostPopularShows = response.body().string();
-
-            System.out.println(mostPopularShows);
 
             Gson gson = new Gson();
 

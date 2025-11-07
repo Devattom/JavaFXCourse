@@ -6,6 +6,7 @@ module org.project.javafxcourse {
     requires okhttp3;
     requires com.google.gson;
     requires static lombok;
+    requires javafx.graphics;
 
     // Ouvre les contrôleurs à JavaFX (pour FXML)
     opens org.project.javafxcourse.controllers to javafx.fxml;

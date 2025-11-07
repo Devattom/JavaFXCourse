@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.Cursor?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.project.javafxcourse.controllers.MovieCardController"
       spacing="6"
@@ -32,11 +33,16 @@
     <HBox fx:id="starsContainer" spacing="3" alignment="CENTER" />
 
     <!-- Bouton -->
-    <Button fx:id="watchButton" text="🎥 Où regarder ?"
+    <Button fx:id="watchButton"
+            text="🎥 Où regarder ?"
+            onAction="#onWatchButtonClick"
             style="-fx-background-radius:6; -fx-background-color: #e50914;
                    -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 10px;
                    -fx-padding: 5 8;"
             maxWidth="Infinity">
+        <cursor>
+            <Cursor fx:constant="HAND"/>
+        </cursor>
         <VBox.margin>
             <Insets top="4"/>
         </VBox.margin>
