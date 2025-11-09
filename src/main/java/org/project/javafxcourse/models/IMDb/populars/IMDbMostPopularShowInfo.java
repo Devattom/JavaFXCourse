@@ -9,4 +9,5 @@ public class IMDbMostPopularShowInfo implements IMDbPopularsInfo {
     private String primaryImage;
     private String primaryTitle;
     private String description;
+    private String showType = "series";
 }

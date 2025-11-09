@@ -4,16 +4,23 @@ import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.project.javafxcourse.config.AppConfig;
 import org.project.javafxcourse.interfaces.MoviesManager;
 import org.project.javafxcourse.models.IMDb.populars.IMDbMostPopularMovieInfo;
 import org.project.javafxcourse.models.IMDb.populars.IMDbMostPopularShowInfo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class IMDbApiRepository implements MoviesManager {
     private String baseUrl =  "https://imdb236.p.rapidapi.com/api/imdb";
-    private String apiKey = "3633bbd7ebmshbeec87fdb76e4a9p1edd85jsne9b1652eb2df";
+    private String apiKey;
+
+    public IMDbApiRepository() {
+        AppConfig config = AppConfig.getInstance();
+        this.apiKey = config.get("rapidapi.api.key");
+    }
 
     @Override
     public List<IMDbMostPopularMovieInfo> getMostPopularMovies() throws Exception {
@@ -30,8 +37,6 @@ public class IMDbApiRepository implements MoviesManager {
 
             String mostPopularMovies = response.body().string();
 
-            System.out.println(mostPopularMovies);
-
             Gson gson = new Gson();
 
             List<IMDbMostPopularMovieInfo> movies = List.of(gson.fromJson(mostPopularMovies, IMDbMostPopularMovieInfo[].class));
@@ -39,9 +44,9 @@ public class IMDbApiRepository implements MoviesManager {
 //        List<IMDbMostPopularMovieInfo> movies = new ArrayList<>();
 //        IMDbMostPopularMovieInfo movie = new IMDbMostPopularMovieInfo();
 //        movie.setAverageRating(5.00);
-//        movie.setDescription("Super description");
-//        movie.setPrimaryTitle("Super title");
-//        movie.setPrimaryImage("https://google.com");
+//        movie.setDescription("A wayward school bus driver and a dedicated school teacher battle to save 22 children from a terrifying inferno");
+//        movie.setPrimaryTitle("The Lost Bus");
+//        movie.setPrimaryImage("https://m.media-amazon.com/images/M/MV5BZTIzNmQzYzUtNTdlNi00NmY5LThmNTYtMGFmZjUxMTgzOGNmXkEyXkFqcGc@.jpg");
 //        movies.add(movie);
             return movies;
         }
@@ -61,19 +66,17 @@ public class IMDbApiRepository implements MoviesManager {
 
             String mostPopularShows = response.body().string();
 
-            System.out.println(mostPopularShows);
-
             Gson gson = new Gson();
 
             List<IMDbMostPopularShowInfo> shows = List.of(gson.fromJson(mostPopularShows, IMDbMostPopularShowInfo[].class));
-
-//        List<IMDbMostPopularMovieInfo> movies = new ArrayList<>();
-//        IMDbMostPopularMovieInfo movie = new IMDbMostPopularMovieInfo();
-//        movie.setAverageRating(5.00);
-//        movie.setDescription("Super description");
-//        movie.setPrimaryTitle("Super title");
-//        movie.setPrimaryImage("https://google.com");
-//        movies.add(movie);
+//
+//        List<IMDbMostPopularShowInfo> shows = new ArrayList<>();
+//        IMDbMostPopularShowInfo show = new IMDbMostPopularShowInfo();
+//        show.setAverageRating(5.00);
+//        show.setDescription("Carl, a former top-rated detective, is wracked with guilt following an attack that left his partner paralyzed and another policeman dead. On his return to work, Carl is assigned to a cold case that will consume his life");
+//        show.setPrimaryTitle("Dept. Q");
+//        show.setPrimaryImage("https://m.media-amazon.com/images/M/MV5BNWQ3MDQ2MGQtOGM0MC00MzlkLWE0ODQtYzE4Zjc3Mjc1ZWI5XkEyXkFqcGc@.jpg");
+//        shows.add(show);
             return shows;
         }
     }

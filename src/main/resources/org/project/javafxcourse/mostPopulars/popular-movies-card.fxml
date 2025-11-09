@@ -7,8 +7,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.Cursor?>
 <VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.project.javafxcourse.controllers.MovieCardController"
+      fx:controller="org.project.javafxcourse.controllers.mostPopulars.MovieCardController"
       spacing="6"
       alignment="TOP_CENTER"
       style="-fx-background-color: #ffffff; -fx-background-radius: 8;
@@ -18,8 +19,6 @@
     <!-- Image avec taille fixe (uniformité visuelle) -->
     <ImageView fx:id="posterImage"
                fitWidth="150" fitHeight="220"
-               preserveRatio="false"
-               smooth="true"
                style="-fx-background-color: #f0f0f0; -fx-background-radius: 4;" />
 
     <!-- Titre -->
@@ -32,11 +31,16 @@
     <HBox fx:id="starsContainer" spacing="3" alignment="CENTER" />
 
     <!-- Bouton -->
-    <Button fx:id="watchButton" text="🎥 Où regarder ?"
+    <Button fx:id="watchButton"
+            text="🎥 Où regarder ?"
+            onAction="#onWatchButtonClick"
             style="-fx-background-radius:6; -fx-background-color: #e50914;
                    -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 10px;
                    -fx-padding: 5 8;"
             maxWidth="Infinity">
+        <cursor>
+            <Cursor fx:constant="HAND"/>
+        </cursor>
         <VBox.margin>
             <Insets top="4"/>
         </VBox.margin>

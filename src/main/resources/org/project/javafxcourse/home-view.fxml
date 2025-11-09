@@ -18,8 +18,8 @@
     <!-- Section des recommandations au centre -->
     <center>
         <VBox spacing="10" alignment="TOP_CENTER" style="-fx-padding: 10;">
-            <fx:include source="most-popular.fxml" fx:id="popularMoviesSection"/>
-            <fx:include source="most-popular.fxml" fx:id="popularShowsSection"/>
+            <fx:include source="mostPopulars/most-popular.fxml" fx:id="popularMoviesSection"/>
+            <fx:include source="mostPopulars/most-popular.fxml" fx:id="popularShowsSection"/>
         </VBox>
     </center>
 

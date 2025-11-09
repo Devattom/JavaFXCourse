@@ -5,4 +5,5 @@ public interface IMDbPopularsInfo {
     String getPrimaryImage();
     Double getAverageRating();
     String getDescription();
+    String getShowType();
 }
