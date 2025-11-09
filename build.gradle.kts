@@ -43,6 +43,7 @@ dependencies {
     compileOnly("org.projectlombok:lombok:+")
     annotationProcessor("org.projectlombok:lombok:1.+")
     implementation("com.google.code.gson:gson:+")
+    implementation("org.xerial:sqlite-jdbc:3.46.0.0")
 }
 
 tasks.withType<Test> {
