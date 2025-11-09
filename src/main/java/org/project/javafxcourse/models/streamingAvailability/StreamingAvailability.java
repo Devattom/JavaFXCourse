@@ -9,6 +9,7 @@ import java.util.Map;
 public class StreamingAvailability {
     private String title;
     private String overview;
+    private String showType;
     private Map<String, List<StreamingOption>> streamingOptions;
     private ImageSet imageSet;
 }

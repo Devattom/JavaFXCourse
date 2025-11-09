@@ -1,6 +1,5 @@
-package org.project.javafxcourse.controllers;
+package org.project.javafxcourse.controllers.mostPopulars;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,49 +9,51 @@ import javafx.scene.layout.HBox;
 import org.project.javafxcourse.interfaces.IMDb.IMDbPopularsInfo;
 import org.project.javafxcourse.navigation.NavigationManager;
 
-import java.io.InputStream;
-
 public class MovieCardController {
 
+    @FXML
+    public Button watchButton;
     @FXML
     private ImageView posterImage;
     @FXML
     private Label titleLabel;
     @FXML
     private HBox starsContainer;
-    @FXML
-    private Button watchButton;
 
     private String title;
     private String showType;
 
+    /**
+     * gestion du clic sur le bouton
+     */
     @FXML
-    private void onWatchButtonClick(ActionEvent event) {
-        // On appelle un gestionnaire global (typiquement via un EventBus, ou une interface)
+    private void onWatchButtonClick() {
         NavigationManager.goToStreamingAvailability(title, showType);
     }
 
-    // Set data called by le loader after load()
+    /**
+     * Set les data pour les movie card
+     * @param movie infos sur l"élément à afficher
+     */
     public void setData(IMDbPopularsInfo movie) {
         // Titre
-        titleLabel.setText(safeString(movie.getPrimaryTitle(), "Titre inconnu"));
+        titleLabel.setText(movie.getPrimaryTitle() != null && !movie.getPrimaryTitle().isBlank()
+                ? movie.getPrimaryTitle()
+                : "Titre inconnu"
+        );
+
         this.title = movie.getPrimaryTitle();
         this.showType = movie.getShowType();
 
-        // Image (chargement asynchrone)
         String imageUrl = movie.getPrimaryImage();
         if (imageUrl != null && !imageUrl.isBlank()) {
             try {
                 Image img = new Image(imageUrl, /*requestedWidth*/180, /*requestedHeight*/260, true, true, true);
                 posterImage.setImage(img);
             } catch (Exception e) {
-                // fallback image from resources si problème
-                posterImage.setImage(loadResourcePlaceholder());
+                e.printStackTrace();
             }
-        } else {
-            posterImage.setImage(loadResourcePlaceholder());
         }
-
         starsContainer.getChildren().clear();
 
         double critics = movie.getAverageRating(); // Note IMDb : sur 10
@@ -64,21 +65,5 @@ public class MovieCardController {
             star.setStyle("-fx-font-size: 16px; -fx-text-fill: #f4c542;"); // jaune
             starsContainer.getChildren().add(star);
         }
-    }
-
-    private String safeString(String s, String def) {
-        return (s == null || s.isBlank()) ? def : s;
-    }
-
-    // Charge une image placeholder incluse dans les ressources (resources/images/placeholder.png)
-    private Image loadResourcePlaceholder() {
-        try {
-            InputStream is = getClass().getResourceAsStream("/images/placeholder.png");
-            if (is != null) {
-                return new Image(is);
-            }
-        } catch (Exception ignored) {}
-        // si pas de ressource, retourne une image vide 1x1
-        return new Image("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=");
     }
 }

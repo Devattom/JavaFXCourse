@@ -6,5 +6,5 @@ import lombok.Data;
 public class StreamingService {
     private String name;
     private String homePage;
-    private String videoLink;
+    private StreamingServiceImage imageSet;
 }

@@ -9,7 +9,7 @@
 
 <?import javafx.scene.Cursor?>
 <VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.project.javafxcourse.controllers.MovieCardController"
+      fx:controller="org.project.javafxcourse.controllers.mostPopulars.MovieCardController"
       spacing="6"
       alignment="TOP_CENTER"
       style="-fx-background-color: #ffffff; -fx-background-radius: 8;
@@ -19,8 +19,6 @@
     <!-- Image avec taille fixe (uniformité visuelle) -->
     <ImageView fx:id="posterImage"
                fitWidth="150" fitHeight="220"
-               preserveRatio="false"
-               smooth="true"
                style="-fx-background-color: #f0f0f0; -fx-background-radius: 4;" />
 
     <!-- Titre -->

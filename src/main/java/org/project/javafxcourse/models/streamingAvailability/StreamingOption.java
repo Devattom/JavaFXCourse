@@ -5,4 +5,5 @@ import lombok.Data;
 @Data
 public class StreamingOption {
     private StreamingService service;
+    private String link;
 }

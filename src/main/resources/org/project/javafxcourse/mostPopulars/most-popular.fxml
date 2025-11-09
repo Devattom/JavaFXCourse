@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.project.javafxcourse.controllers.MostPopularsController"
+      fx:controller="org.project.javafxcourse.controllers.mostPopulars.MostPopularsController"
       spacing="8"
       style="-fx-padding: 10 20;"
       alignment="TOP_LEFT">

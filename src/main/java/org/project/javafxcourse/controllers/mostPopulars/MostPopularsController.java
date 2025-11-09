@@ -1,4 +1,4 @@
-package org.project.javafxcourse.controllers;
+package org.project.javafxcourse.controllers.mostPopulars;
 
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -37,21 +37,20 @@ public class MostPopularsController {
             Supplier<List<T>> dataSupplier,
             String errorMessage
     ) {
-        System.out.println("ContentSectionController::loadContent");
 
         showLoading(true);
         errorLabel.setVisible(false);
 
-        Task<List<T>> task = new Task<>() {
+        Task<List<T>> mostPopularsTask = new Task<>() {
             @Override
             protected List<T> call() throws Exception {
                 return dataSupplier.get();
             }
         };
 
-        task.setOnSucceeded(e -> {
+        mostPopularsTask.setOnSucceeded(e -> {
             showLoading(false);
-            List<T> items = task.getValue();
+            List<T> items = mostPopularsTask.getValue();
 
             if (items == null || items.isEmpty()) {
                 showErrorMessage("Aucun contenu disponible");
@@ -61,14 +60,14 @@ public class MostPopularsController {
             displayItems(items);
         });
 
-        task.setOnFailed(e -> {
+        mostPopularsTask.setOnFailed(e -> {
             showLoading(false);
-            Throwable ex = task.getException();
+            Throwable ex = mostPopularsTask.getException();
             ex.printStackTrace();
             showErrorMessage(errorMessage != null ? errorMessage : "Erreur lors du chargement");
         });
 
-        Thread thread = new Thread(task);
+        Thread thread = new Thread(mostPopularsTask);
         thread.setDaemon(true);
         thread.start();
     }
@@ -86,11 +85,11 @@ public class MostPopularsController {
         popularsContainer.getChildren().clear();
 
         moviesRecommendations.stream()
-                .limit(10)
+                .limit(15)
                 .forEach(movie -> {
                     try {
                         FXMLLoader loader = new FXMLLoader(
-                                getClass().getResource("/org/project/javafxcourse/movie-card.fxml")
+                                getClass().getResource("/org/project/javafxcourse/mostPopulars/popular-movies-card.fxml")
                         );
                         Pane card = loader.load();
 

@@ -1,12 +1,12 @@
-package org.project.javafxcourse.repositories;
+package org.project.javafxcourse.repositories.streamingAvailability;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonSyntaxException;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.project.javafxcourse.config.AppConfig;
 import org.project.javafxcourse.interfaces.StreamingAvailabilityManager;
 import org.project.javafxcourse.models.streamingAvailability.StreamingAvailability;
 
@@ -16,8 +16,12 @@ import java.util.Objects;
 
 public class StreamingAvailabilityApiRepository implements StreamingAvailabilityManager {
     private String baseUrl = "https://streaming-availability.p.rapidapi.com/shows/search/title";
-    private String apiKey = "3633bbd7ebmshbeec87fdb76e4a9p1edd85jsne9b1652eb2df";
+    private String apiKey;
 
+    public StreamingAvailabilityApiRepository() {
+        AppConfig config = AppConfig.getInstance();
+        this.apiKey = config.get("rapidapi.api.key");
+    }
 
     @Override
     public List<StreamingAvailability> getByNameAndCountry(String name, String country, String showType) throws Exception {
@@ -28,6 +32,7 @@ public class StreamingAvailabilityApiRepository implements StreamingAvailability
                 .addQueryParameter("country", country)
                 .addQueryParameter("title", name)
                 .addQueryParameter("show_type", showType)
+                .addQueryParameter("output_language", "fr")
                 .build();
 
 
@@ -43,7 +48,7 @@ public class StreamingAvailabilityApiRepository implements StreamingAvailability
             String streamingAvailabilities = response.body().string();
 
             Gson gson = new GsonBuilder().create();
-            
+
             return List.of(gson.fromJson(streamingAvailabilities, StreamingAvailability[].class));
         }
     }

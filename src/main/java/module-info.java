@@ -7,6 +7,8 @@ module org.project.javafxcourse {
     requires com.google.gson;
     requires static lombok;
     requires javafx.graphics;
+    requires java.desktop;
+    requires javafx.web;
 
     // Ouvre les contrôleurs à JavaFX (pour FXML)
     opens org.project.javafxcourse.controllers to javafx.fxml;
@@ -18,4 +20,9 @@ module org.project.javafxcourse {
     exports org.project.javafxcourse;
     exports org.project.javafxcourse.controllers;
     exports org.project.javafxcourse.models.IMDb.populars;
+    exports org.project.javafxcourse.controllers.streamingAvailability;
+    opens org.project.javafxcourse.controllers.streamingAvailability to javafx.fxml;
+    exports org.project.javafxcourse.controllers.mostPopulars;
+    opens org.project.javafxcourse.controllers.mostPopulars to javafx.fxml;
+    exports org.project.javafxcourse.config;
 }
