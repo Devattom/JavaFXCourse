@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import org.project.javafxcourse.interfaces.IMDb.IMDbPopularsInfo;
 import org.project.javafxcourse.navigation.NavigationManager;
+import org.project.javafxcourse.repositories.history.HistoryRepository;
 
 public class MovieCardController {
 
@@ -28,6 +29,8 @@ public class MovieCardController {
      */
     @FXML
     private void onWatchButtonClick() {
+        var historyRepo = new HistoryRepository();
+        historyRepo.addHistory(title, showType);
         NavigationManager.goToStreamingAvailability(title, showType);
     }
 

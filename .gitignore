@@ -6,6 +6,8 @@ build/
 .kotlin
 /src/main/resources/config
 
+/data/app.db
+
 ### IntelliJ IDEA ###
 .idea
 .idea/modules.xml

@@ -9,6 +9,8 @@ module org.project.javafxcourse {
     requires javafx.graphics;
     requires java.desktop;
     requires javafx.web;
+    requires jakarta.persistence;
+    requires org.hibernate.orm.core;
 
     // Ouvre les contrôleurs à JavaFX (pour FXML)
     opens org.project.javafxcourse.controllers to javafx.fxml;
