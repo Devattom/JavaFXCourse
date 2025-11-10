@@ -2,6 +2,7 @@ package org.project.javafxcourse.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
+import org.project.javafxcourse.controllers.history.HistoryController;
 import org.project.javafxcourse.controllers.mostPopulars.MostPopularsController;
 import org.project.javafxcourse.repositories.mostPopulars.IMDbApiRepository;
 
@@ -16,6 +17,9 @@ public class HomeController {
     private VBox popularShowsSection;
     @FXML
     private MostPopularsController popularShowsSectionController;
+
+    @FXML
+    private HistoryController historySectionController;
 
     @FXML
     public void initialize() {
@@ -49,5 +53,6 @@ public class HomeController {
 
         popularMoviesSectionController.setSectionTitle("⭐ Recommandations de films");
         popularShowsSectionController.setSectionTitle("⭐ Recommandations de séries");
+
     }
 }

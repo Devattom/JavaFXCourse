@@ -30,7 +30,13 @@ public class HistoryRepository {
         return list;
     }
 
-    public void close() {
-        if (emf != null) emf.close();
+    public void clearAll() {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        em.createQuery("DELETE FROM History").executeUpdate();
+
+        em.getTransaction().commit();
+        em.close();
     }
 }

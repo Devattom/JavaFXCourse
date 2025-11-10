@@ -15,9 +15,11 @@ public class History {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter
     @Column(nullable = false)
     private String title;
 
+    @Getter
     @Column(nullable = false)
     private String showType;
 
