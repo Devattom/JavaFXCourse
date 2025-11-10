@@ -20,6 +20,7 @@
         <VBox spacing="10" alignment="TOP_CENTER" style="-fx-padding: 10;">
             <fx:include source="mostPopulars/most-popular.fxml" fx:id="popularMoviesSection"/>
             <fx:include source="mostPopulars/most-popular.fxml" fx:id="popularShowsSection"/>
+            <fx:include source="history/history-view.fxml" fx:id="historySection"/>
         </VBox>
     </center>
 

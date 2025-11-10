@@ -6,7 +6,7 @@ build/
 .kotlin
 /src/main/resources/config
 
-/data/app.db
+/data/
 
 ### IntelliJ IDEA ###
 .idea
