@@ -15,13 +15,18 @@
         </VBox>
     </top>
 
-    <!-- Section des recommandations au centre -->
+    <!-- Section des recommandations au centre avec ScrollPane -->
     <center>
-        <VBox spacing="10" alignment="TOP_CENTER" style="-fx-padding: 10;">
-            <fx:include source="mostPopulars/most-popular.fxml" fx:id="popularMoviesSection"/>
-            <fx:include source="mostPopulars/most-popular.fxml" fx:id="popularShowsSection"/>
-            <fx:include source="history/history-view.fxml" fx:id="historySection"/>
-        </VBox>
+        <ScrollPane fitToWidth="true"
+                    vbarPolicy="AS_NEEDED"
+                    hbarPolicy="NEVER"
+                    style="-fx-background-color: transparent; -fx-background: transparent;">
+            <VBox spacing="10" alignment="TOP_CENTER" style="-fx-padding: 10;">
+                <fx:include source="mostPopulars/most-popular.fxml" fx:id="popularMoviesSection"/>
+                <fx:include source="mostPopulars/most-popular.fxml" fx:id="popularShowsSection"/>
+                <fx:include source="history/history-view.fxml" fx:id="historySection"/>
+            </VBox>
+        </ScrollPane>
     </center>
 
 </BorderPane>

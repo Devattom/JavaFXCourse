@@ -30,7 +30,7 @@ public class MovieCardController {
     @FXML
     private void onWatchButtonClick() {
         var historyRepo = new HistoryRepository();
-        historyRepo.addHistory(title, showType);
+        historyRepo.save(title, showType);
         NavigationManager.goToStreamingAvailability(title, showType);
     }
 
@@ -59,14 +59,26 @@ public class MovieCardController {
         }
         starsContainer.getChildren().clear();
 
-        Double ratingObj = movie.getAverageRating();
-        double critics = (ratingObj != null) ? ratingObj : 0.0;
+        if (movie.getAverageRating() != null) {
+            double critics = movie.getAverageRating(); // Note IMDb : sur 10
+            int stars = (int) Math.round((critics / 10.0) * 5); // sur 5 étoiles
+            stars = Math.max(0, Math.min(5, stars)); // borne entre 0 et 5
 
-        int stars = (int) Math.round((critics / 10.0) * 5); // sur 5 étoiles
-        stars = Math.max(0, Math.min(5, stars)); // borne entre 0 et 5
+            addStars(stars);
+        } else {
+            addStars(0);
+        }
+    }
 
+    private void addStars(int nbStars) {
         for (int i = 0; i < 5; i++) {
-            Label star = new Label(i < stars ? "★" : "☆");
+            Label star;
+            if (nbStars == 0) {
+                star = new Label("☆");
+            } else {
+                star = new Label(i < nbStars ? "★" : "☆");
+            }
+
             star.setStyle("-fx-font-size: 16px; -fx-text-fill: #f4c542;"); // jaune
             starsContainer.getChildren().add(star);
         }

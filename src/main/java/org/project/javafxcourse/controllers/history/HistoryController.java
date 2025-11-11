@@ -7,10 +7,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import org.project.javafxcourse.controllers.streamingAvailability.StreamingAvailabilityController;
 import org.project.javafxcourse.models.entities.History;
 import org.project.javafxcourse.repositories.history.HistoryRepository;
 
@@ -21,7 +20,7 @@ import java.util.Optional;
 public class HistoryController {
 
     @FXML
-    private VBox historyContainer;
+    private FlowPane historyContainer;
 
     @FXML
     private StackPane loadingPane;
@@ -50,7 +49,7 @@ public class HistoryController {
 
         new Thread(() -> {
             try {
-                List<History> historyList = historyRepository.getAllHistory();
+                List<History> historyList = historyRepository.getAll();
 
                 Platform.runLater(() -> {
                     showLoading(false);
@@ -89,11 +88,6 @@ public class HistoryController {
                 HistoryCardController cardController = loader.getController();
                 cardController.setData(history);
 
-                // Callback pour le bouton "Voir"
-                cardController.setOnViewAction(() -> {
-                    navigateToStreamingAvailability(history);
-                });
-
                 historyContainer.getChildren().add(card);
 
             } catch (IOException e) {
@@ -119,7 +113,7 @@ public class HistoryController {
 
         new Thread(() -> {
             try {
-                historyRepository.clearAll();
+                historyRepository.deleteAll();
 
                 Platform.runLater(() -> {
                     showLoading(false);
@@ -134,25 +128,6 @@ public class HistoryController {
                 });
             }
         }).start();
-    }
-
-    private void navigateToStreamingAvailability(History history) {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/org/project/javafxcourse/streaming-availability-view.fxml")
-            );
-            Pane view = loader.load();
-
-            StreamingAvailabilityController controller = loader.getController();
-            controller.searchStreamingAvailabilities(history.getTitle(), history.getShowType());
-
-            // Remplacer la vue actuelle
-            historyContainer.getScene().setRoot(view);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            showError("Erreur lors de la navigation");
-        }
     }
 
     private void showLoading(boolean show) {

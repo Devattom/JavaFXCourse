@@ -6,7 +6,8 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "history")
+@Table(name = "history",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"title", "showType"}))
 public class History {
 
     // Getters et setters
@@ -24,15 +25,19 @@ public class History {
     private String showType;
 
     @Getter
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
+    @Column(name = "consulted_at", nullable = false)
+    private LocalDateTime consultedAt;
 
     public History() {}
 
     public History(String title, String showType) {
         this.title = title;
         this.showType = showType;
-        this.createdAt = LocalDateTime.now();
+        this.consultedAt = LocalDateTime.now();
+    }
+
+    public void updateConsultedAt() {
+        this.consultedAt = LocalDateTime.now();
     }
 
 }
