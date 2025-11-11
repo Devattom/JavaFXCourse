@@ -6,8 +6,7 @@
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.project.javafxcourse.controllers.mostPopulars.MostPopularsController"
       spacing="8"
-      style="-fx-padding: 10 20;"
-      alignment="TOP_LEFT">
+      style="-fx-padding: 10 20;">
 
     <!-- Titre de la section -->
     <Label fx:id="sectionTitle"
@@ -20,19 +19,25 @@
     </StackPane>
 
     <!-- ScrollPane avec les cartes -->
-    <ScrollPane fitToHeight="false"
-                hbarPolicy="AS_NEEDED"
+    <ScrollPane hbarPolicy="AS_NEEDED"
                 vbarPolicy="NEVER"
+                fitToHeight="false"
+                fitToWidth="true"
                 pannable="true"
-                style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;">
+                style="-fx-background-color: transparent; -fx-border-color: transparent;"
+                VBox.vgrow="NEVER">
+
         <HBox fx:id="popularsContainer"
               spacing="20"
-              alignment="TOP_LEFT" />
+              alignment="CENTER_LEFT"
+              style="-fx-padding: 10 0; -fx-background-color: transparent;"
+              minHeight="-1"
+              prefHeight="-1"
+              maxHeight="-1" />
     </ScrollPane>
 
     <!-- Message d'erreur -->
     <Label fx:id="errorLabel"
            visible="false"
            style="-fx-text-fill: #e50914; -fx-font-size: 14px; -fx-font-weight: bold;" />
-
 </VBox>

@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import lombok.Setter;
 import org.project.javafxcourse.models.entities.History;
+import org.project.javafxcourse.navigation.NavigationManager;
+import org.project.javafxcourse.repositories.history.HistoryRepository;
 
 import java.time.format.DateTimeFormatter;
 
@@ -26,8 +28,14 @@ public class HistoryCardController {
     private Button viewButton;
 
     private History history;
-    @Setter
-    private Runnable onViewAction;
+
+    /**
+     * gestion du clic sur le bouton
+     */
+    @FXML
+    private void onWatchButtonClick() {
+        NavigationManager.goToStreamingAvailability(history.getTitle(), history.getShowType());
+    }
 
     public void setData(History history) {
         this.history = history;
@@ -50,13 +58,7 @@ public class HistoryCardController {
 
         // Date
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy à HH:mm");
-        dateLabel.setText("Consulté le " + history.getCreatedAt().format(formatter));
+        dateLabel.setText("Consulté le " + history.getConsultedAt().format(formatter));
 
-        // Bouton Voir
-        viewButton.setOnAction(e -> {
-            if (onViewAction != null) {
-                onViewAction.run();
-            }
-        });
     }
 }
