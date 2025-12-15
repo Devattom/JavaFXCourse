@@ -1,7 +1,6 @@
 plugins {
     java
     application
-    id("org.javamodularity.moduleplugin") version "1.8.15"
     id("org.openjfx.javafxplugin") version "0.0.13"
     id("org.beryx.jlink") version "2.25.0"
 }
@@ -26,8 +25,7 @@ tasks.withType<JavaCompile> {
 }
 
 application {
-    mainModule.set("org.project.javafxcourse")
-    mainClass.set("org.project.javafxcourse.HelloApplication")
+    mainClass.set("org.project.javafxcourse.CineScoutApplication")
 }
 
 javafx {
@@ -43,6 +41,10 @@ dependencies {
     compileOnly("org.projectlombok:lombok:+")
     annotationProcessor("org.projectlombok:lombok:1.+")
     implementation("com.google.code.gson:gson:+")
+    implementation("org.xerial:sqlite-jdbc:3.46.0.0")
+    implementation("org.hibernate.orm:hibernate-community-dialects:6.4.1.Final")
+    implementation("org.hibernate.orm:hibernate-core:6.4.1.Final")
+    implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
 }
 
 tasks.withType<Test> {

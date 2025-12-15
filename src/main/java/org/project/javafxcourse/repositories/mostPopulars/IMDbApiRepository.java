@@ -69,7 +69,7 @@ public class IMDbApiRepository implements MoviesManager {
             Gson gson = new Gson();
 
             List<IMDbMostPopularShowInfo> shows = List.of(gson.fromJson(mostPopularShows, IMDbMostPopularShowInfo[].class));
-//
+
 //        List<IMDbMostPopularShowInfo> shows = new ArrayList<>();
 //        IMDbMostPopularShowInfo show = new IMDbMostPopularShowInfo();
 //        show.setAverageRating(5.00);
