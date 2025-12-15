@@ -56,7 +56,9 @@ public class MovieCardController {
         }
         starsContainer.getChildren().clear();
 
-        double critics = movie.getAverageRating(); // Note IMDb : sur 10
+        Double ratingObj = movie.getAverageRating();
+        double critics = (ratingObj != null) ? ratingObj : 0.0;
+
         int stars = (int) Math.round((critics / 10.0) * 5); // sur 5 étoiles
         stars = Math.max(0, Math.min(5, stars)); // borne entre 0 et 5
 

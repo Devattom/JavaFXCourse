@@ -15,6 +15,7 @@ module org.project.javafxcourse {
 
     // Ouvre les modèles à Gson et JavaFX (pour la désérialisation et les bindings)
     opens org.project.javafxcourse.models.IMDb.populars to com.google.gson, javafx.base;
+    opens org.project.javafxcourse.models.streamingAvailability to com.google.gson, javafx.base;
 
     // Exporte les packages utiles
     exports org.project.javafxcourse;
