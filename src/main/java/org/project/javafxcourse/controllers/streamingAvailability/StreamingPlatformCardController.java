@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import org.project.javafxcourse.CineScoutApplication;
 import org.project.javafxcourse.models.streamingAvailability.StreamingOption;
 import org.project.javafxcourse.services.ImageService;
 
@@ -32,12 +33,8 @@ public class StreamingPlatformCardController {
     @FXML
     private void onWatchButtonClick(ActionEvent event) {
         if (this.watchUrl != null && !this.watchUrl.isBlank()) {
-            try {
-                Desktop.getDesktop().browse(new URI(this.watchUrl));
-            } catch (IOException | URISyntaxException e) {
-                System.err.println("Erreur lors de l'ouverture du lien : " + this.watchUrl);
-                e.printStackTrace();
-            }
+            System.out.println("click watch button : " + this.watchUrl);
+            CineScoutApplication.openWebpage(this.watchUrl);
         }
     }
 
