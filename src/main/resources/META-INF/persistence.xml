@@ -6,6 +6,7 @@
              version="3.1">
 
     <persistence-unit name="sqlitePU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>org.project.javafxcourse.models.entities.History</class>
 
         <properties>
